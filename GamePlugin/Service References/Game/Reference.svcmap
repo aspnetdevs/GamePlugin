@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="91dc4951-18cb-403c-a96f-926ff2a969c3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/FootballBattles/GameService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="GameService.xsd" MetadataType="Schema" ID="ce9c7762-b1ad-4304-96a9-7554a0fcd122" SourceId="1" SourceUrl="http://localhost/FootballBattles/GameService.svc?xsd=xsd0" />
+    <MetadataFile FileName="GameService1.xsd" MetadataType="Schema" ID="13204cb8-af3c-46ff-b5ee-e4e6d1347f2f" SourceId="1" SourceUrl="http://localhost/FootballBattles/GameService.svc?xsd=xsd1" />
+    <MetadataFile FileName="GameService.disco" MetadataType="Disco" ID="8d375e18-75e9-4d29-9c85-e8e264d3bd44" SourceId="1" SourceUrl="http://localhost/FootballBattles/GameService.svc?disco" />
+    <MetadataFile FileName="GameService1.wsdl" MetadataType="Wsdl" ID="1815e438-cdcf-4ce3-8e57-c3f50d5aa977" SourceId="1" SourceUrl="http://localhost/FootballBattles/GameService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
