@@ -22,6 +22,11 @@ namespace GamePlugin.Game {
         System.IAsyncResult BeginGetStartMetadata(string gameId, string userId, System.AsyncCallback callback, object asyncState);
         
         string EndGetStartMetadata(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/GameService/SetMoveMetadata", ReplyAction="http://tempuri.org/GameService/SetMoveMetadataResponse")]
+        System.IAsyncResult BeginSetMoveMetadata(string gameId, string userId, string metadata, int currentMoveNumber, System.AsyncCallback callback, object asyncState);
+        
+        void EndSetMoveMetadata(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -56,6 +61,12 @@ namespace GamePlugin.Game {
         private EndOperationDelegate onEndGetStartMetadataDelegate;
         
         private System.Threading.SendOrPostCallback onGetStartMetadataCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginSetMoveMetadataDelegate;
+        
+        private EndOperationDelegate onEndSetMoveMetadataDelegate;
+        
+        private System.Threading.SendOrPostCallback onSetMoveMetadataCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -112,6 +123,8 @@ namespace GamePlugin.Game {
         
         public event System.EventHandler<GetStartMetadataCompletedEventArgs> GetStartMetadataCompleted;
         
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> SetMoveMetadataCompleted;
+        
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CloseCompleted;
@@ -162,6 +175,57 @@ namespace GamePlugin.Game {
             base.InvokeAsync(this.onBeginGetStartMetadataDelegate, new object[] {
                         gameId,
                         userId}, this.onEndGetStartMetadataDelegate, this.onGetStartMetadataCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult GamePlugin.Game.GameService.BeginSetMoveMetadata(string gameId, string userId, string metadata, int currentMoveNumber, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSetMoveMetadata(gameId, userId, metadata, currentMoveNumber, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        void GamePlugin.Game.GameService.EndSetMoveMetadata(System.IAsyncResult result) {
+            base.Channel.EndSetMoveMetadata(result);
+        }
+        
+        private System.IAsyncResult OnBeginSetMoveMetadata(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string gameId = ((string)(inValues[0]));
+            string userId = ((string)(inValues[1]));
+            string metadata = ((string)(inValues[2]));
+            int currentMoveNumber = ((int)(inValues[3]));
+            return ((GamePlugin.Game.GameService)(this)).BeginSetMoveMetadata(gameId, userId, metadata, currentMoveNumber, callback, asyncState);
+        }
+        
+        private object[] OnEndSetMoveMetadata(System.IAsyncResult result) {
+            ((GamePlugin.Game.GameService)(this)).EndSetMoveMetadata(result);
+            return null;
+        }
+        
+        private void OnSetMoveMetadataCompleted(object state) {
+            if ((this.SetMoveMetadataCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SetMoveMetadataCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SetMoveMetadataAsync(string gameId, string userId, string metadata, int currentMoveNumber) {
+            this.SetMoveMetadataAsync(gameId, userId, metadata, currentMoveNumber, null);
+        }
+        
+        public void SetMoveMetadataAsync(string gameId, string userId, string metadata, int currentMoveNumber, object userState) {
+            if ((this.onBeginSetMoveMetadataDelegate == null)) {
+                this.onBeginSetMoveMetadataDelegate = new BeginOperationDelegate(this.OnBeginSetMoveMetadata);
+            }
+            if ((this.onEndSetMoveMetadataDelegate == null)) {
+                this.onEndSetMoveMetadataDelegate = new EndOperationDelegate(this.OnEndSetMoveMetadata);
+            }
+            if ((this.onSetMoveMetadataCompletedDelegate == null)) {
+                this.onSetMoveMetadataCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSetMoveMetadataCompleted);
+            }
+            base.InvokeAsync(this.onBeginSetMoveMetadataDelegate, new object[] {
+                        gameId,
+                        userId,
+                        metadata,
+                        currentMoveNumber}, this.onEndSetMoveMetadataDelegate, this.onSetMoveMetadataCompletedDelegate, userState);
         }
         
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
@@ -252,6 +316,21 @@ namespace GamePlugin.Game {
                 object[] _args = new object[0];
                 string _result = ((string)(base.EndInvoke("GetStartMetadata", _args, result)));
                 return _result;
+            }
+            
+            public System.IAsyncResult BeginSetMoveMetadata(string gameId, string userId, string metadata, int currentMoveNumber, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[4];
+                _args[0] = gameId;
+                _args[1] = userId;
+                _args[2] = metadata;
+                _args[3] = currentMoveNumber;
+                System.IAsyncResult _result = base.BeginInvoke("SetMoveMetadata", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public void EndSetMoveMetadata(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                base.EndInvoke("SetMoveMetadata", _args, result);
             }
         }
     }

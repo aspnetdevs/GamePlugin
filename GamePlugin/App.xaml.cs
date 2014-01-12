@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Windows;
+using System.Windows.Browser;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -20,14 +21,15 @@ namespace GamePlugin
             this.Startup += this.Application_Startup;
             this.Exit += this.Application_Exit;
             this.UnhandledException += this.Application_UnhandledException;
-
             InitializeComponent();
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            GameEnvironment.SetDefaultProperties();  
-            this.RootVisual = new Playground();
+            GameEnvironment.SetDefaultProperties();
+            Playground playground = new Playground();
+            HtmlPage.RegisterScriptableObject("GamePluginObject", playground);
+            this.RootVisual = playground;
         }
 
         private void Application_Exit(object sender, EventArgs e)

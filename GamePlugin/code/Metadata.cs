@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -11,10 +12,29 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
 namespace GamePlugin
-{
+{   
+    [DataContract]
+    [KnownType(typeof(MoveMetadata))]
+    public class MoveMetadata : IMoveMetadata
+    {
+        [DataMember]
+        public List<IMoveMetadata> Players = new List<IMoveMetadata>();
+    }
+    [DataContract]
+    [KnownType(typeof(PlayerMoveMetadata))]
+    public class PlayerMoveMetadata : IMoveMetadata
+    {
+        [DataMember]
+        public Guid Tag { get; set; }
+        [DataMember]
+        public string ActionName { get; set; }
+        [DataMember]
+        public Point MoveTo { get; set; }
+    }
+
     public class Metadata
     {
-        public IEnumerable<PlayerMetadata> Players { get; set; }
+        public List<PlayerMetadata> Players = new List<PlayerMetadata>();
     }
 
     public class PlayerMetadata

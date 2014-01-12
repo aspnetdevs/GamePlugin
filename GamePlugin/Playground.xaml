@@ -10,5 +10,6 @@
         <Canvas.Background>
                 <ImageBrush Stretch="Fill" ImageSource="image/playground.png"/>
         </Canvas.Background>
+        <Button x:Name="EndMove" Content="Закончить ход" Click="EndMove_Click_1"/>
     </Canvas>
 </UserControl>

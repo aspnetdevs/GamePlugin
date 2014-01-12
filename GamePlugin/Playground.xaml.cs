@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Browser;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -16,29 +17,51 @@ namespace GamePlugin
 {
     public partial class Playground : UserControl, IEntity
     {
-        public Player selectedPlayer;
+        private Player _selectedPlayer;
+        public Player SelectedPlayer
+        {
+            get
+            {
+                return _selectedPlayer;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    this.SelectedPlayer = null;
+                    if (value.actionList == null)
+                    {
+                        ActionList actions = new ActionList(value);
+                        Canvas.SetLeft(actions, Canvas.GetLeft(value) + value.ActualWidth + 10);
+                        Canvas.SetTop(actions, Canvas.GetTop(value));
+                        this.PlaygroundCanvas.Children.Add(actions);
+                        value.actionList = actions;
+                    }
+                    else
+                        value.actionList.Visibility = Visibility.Visible;
+                    value.PlayerEllipse.Fill = new SolidColorBrush(Colors.Red);
+                }
+                else
+                {
+                    if (this._selectedPlayer != null)
+                    {
+                        this._selectedPlayer.PlayerEllipse.Fill = _selectedPlayer.solidColorBrush;
+                        if (this._selectedPlayer.actionList.CheckActionView.Visibility == Visibility.Visible)
+                            this._selectedPlayer.actionList.Visibility = Visibility.Collapsed;
+                    }
+                }
+                this._selectedPlayer = value;
+            }
+        }
         public Playground()
         {
             InitializeComponent();
             this.Loaded += Playground_Loaded;
         }
 
-        public string GetMetadata()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ClearSelectedPlayer()
-        {
-            this.selectedPlayer.PlayerEllipse.Fill = selectedPlayer.solidColorBrush;
-            if (this.selectedPlayer.actionList.CheckActionView.Visibility == Visibility.Visible)
-                this.selectedPlayer.actionList.Visibility = Visibility.Collapsed;
-            this.selectedPlayer = null;
-        }
-
         void Playground_Loaded(object sender, RoutedEventArgs e)
         {
-            var client = new GameServiceClient();
+            GameServiceClient client = new GameServiceClient();
             client.GetStartMetadataCompleted += client_GetStartMetadataCompleted;
             client.GetStartMetadataAsync(GameEnvironment.gameId, GameEnvironment.userId);
         }
@@ -60,20 +83,55 @@ namespace GamePlugin
 
         private void PlaygroundCanvas_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
         {
-            if (selectedPlayer != null)
+            if (_selectedPlayer != null)
             {
-                if (selectedPlayer.arrow != null)
-                    this.PlaygroundCanvas.Children.Remove(selectedPlayer.arrow);
-                Arrow arrow = new Arrow(e.GetPosition(this), selectedPlayer);
-                selectedPlayer.arrow = arrow;
+                if (_selectedPlayer.arrow != null)
+                    this.PlaygroundCanvas.Children.Remove(_selectedPlayer.arrow);
+                Arrow arrow = new Arrow(e.GetPosition(this), _selectedPlayer);
+                _selectedPlayer.arrow = arrow;
                 this.PlaygroundCanvas.Children.Add(arrow);
             }
         }
 
         private void PlaygroundCanvas_MouseRightButtonDown_1(object sender, MouseButtonEventArgs e)
         {
-            ClearSelectedPlayer();
+            this.SelectedPlayer = null;
             e.Handled = true;
+        }
+
+        private void EndMove_Click_1(object sender, RoutedEventArgs e)
+        {
+            IMoveMetadata moveMetadata = GetMetadata();
+            GameServiceClient client = new GameServiceClient();
+            client.SetMoveMetadataCompleted += client_SetMoveMetadataCompleted;
+            client.SetMoveMetadataAsync(GameEnvironment.gameId, GameEnvironment.userId, ServiceHelper.GetJsonStringFromObject<IMoveMetadata>(moveMetadata), GameEnvironment.currentMoveNumber);
+        }
+
+        void client_SetMoveMetadataCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+            HtmlPage.Window.Invoke("checkEndOpponentMove");
+        }
+
+        public IMoveMetadata GetMetadata()
+        {
+            MoveMetadata moveMetadata = new MoveMetadata();
+            foreach (Player item in this.PlaygroundCanvas.Children.OfType<Player>())
+            {
+                if (!item.metadata.IsOpponent)
+                {
+                    IMoveMetadata playerMetadata = item.GetMetadata();
+                    if (playerMetadata != null)
+                        moveMetadata.Players.Add(playerMetadata);
+                }
+
+            }
+            return moveMetadata;
+        }
+
+        [ScriptableMember]
+        public void GetMoveMetadata()
+        {
+            GameEnvironment.currentMoveNumber++;
         }
     }
 }

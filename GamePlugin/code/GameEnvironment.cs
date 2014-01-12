@@ -17,6 +17,7 @@ namespace GamePlugin
     {
         public static string gameId;
         public static string userId;
+        public static int currentMoveNumber = 0;
         public static void SetDefaultProperties()
         {
             gameId = GetQueryStringItemValue("gameId", HtmlPage.Document.DocumentUri.Query);
@@ -38,5 +39,6 @@ namespace GamePlugin
             else
                 throw new Exception("Элемент с таким именем не найден");
         }
+
     }
 }

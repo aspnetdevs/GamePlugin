@@ -20,10 +20,20 @@
   <wsdl:message name="GameService_GetStartMetadata_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetStartMetadataResponse" />
   </wsdl:message>
+  <wsdl:message name="GameService_SetMoveMetadata_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetMoveMetadata" />
+  </wsdl:message>
+  <wsdl:message name="GameService_SetMoveMetadata_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetMoveMetadataResponse" />
+  </wsdl:message>
   <wsdl:portType name="GameService">
     <wsdl:operation name="GetStartMetadata">
       <wsdl:input wsaw:Action="http://tempuri.org/GameService/GetStartMetadata" message="tns:GameService_GetStartMetadata_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/GameService/GetStartMetadataResponse" message="tns:GameService_GetStartMetadata_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetMoveMetadata">
+      <wsdl:input wsaw:Action="http://tempuri.org/GameService/SetMoveMetadata" message="tns:GameService_SetMoveMetadata_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/GameService/SetMoveMetadataResponse" message="tns:GameService_SetMoveMetadata_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CustomBinding_GameService" type="tns:GameService">
@@ -31,6 +41,15 @@
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetStartMetadata">
       <soap12:operation soapAction="http://tempuri.org/GameService/GetStartMetadata" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetMoveMetadata">
+      <soap12:operation soapAction="http://tempuri.org/GameService/SetMoveMetadata" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

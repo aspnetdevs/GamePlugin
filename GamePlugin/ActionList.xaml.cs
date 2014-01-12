@@ -15,7 +15,7 @@ namespace GamePlugin
     public partial class ActionList : UserControl
     {
         Player player;
-        string selectedAction;
+        public string selectedAction;
         public ActionList(Player player)
         {
             InitializeComponent();
@@ -36,7 +36,8 @@ namespace GamePlugin
 
         private void CheckedActionCaption_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
         {
-            selectedAction = string.Empty;
+            selectedAction = null;
+            player.playground.SelectedPlayer = player;
             TransformView();
             e.Handled = true;
         }

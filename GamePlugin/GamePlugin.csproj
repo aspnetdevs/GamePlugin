@@ -62,6 +62,7 @@
   <ItemGroup>
     <Reference Include="mscorlib" />
     <Reference Include="System.ComponentModel.DataAnnotations, Version=5.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217, processorArchitecture=MSIL" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Windows" />
@@ -83,6 +84,9 @@
     </Compile>
     <Compile Include="Arrow.xaml.cs">
       <DependentUpon>Arrow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ball.xaml.cs">
+      <DependentUpon>Ball.xaml</DependentUpon>
     </Compile>
     <Compile Include="code\Actions.cs" />
     <Compile Include="code\GameEnvironment.cs" />
@@ -113,6 +117,10 @@
     <None Include="Service References\Game\GameService.xsd" />
     <None Include="Service References\Game\GameService1.wsdl" />
     <Page Include="Arrow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ball.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

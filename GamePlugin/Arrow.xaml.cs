@@ -16,7 +16,7 @@ namespace GamePlugin
     {
         Player player;
         //Нужно для генерации метаданных
-        Point endPoint;
+        public Point endPoint;
         public Arrow(Point endPoint, Player player)
         {
             InitializeComponent();
@@ -36,6 +36,7 @@ namespace GamePlugin
             line.X2 = endPoint.X;
             line.Y2 = endPoint.Y;
             line.StrokeThickness = 5;
+            line.StrokeEndLineCap = PenLineCap.Triangle;
             line.Stroke = new SolidColorBrush(Colors.Black);
             this.ArrowCanvas.Children.Add(line);
         }
