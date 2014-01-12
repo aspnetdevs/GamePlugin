@@ -17,7 +17,6 @@ namespace GamePlugin
     public partial class Playground : UserControl, IEntity
     {
         public Player selectedPlayer;
-        public ActionList selectedActionList;
         public Playground()
         {
             InitializeComponent();
@@ -29,21 +28,12 @@ namespace GamePlugin
             throw new NotImplementedException();
         }
 
-        public bool SetMetadata(string metadata)
+        public void ClearSelectedPlayer()
         {
-            Metadata metaObject = ServiceHelper.GetTypedObjectFromJson<Metadata>(metadata);
-            if (metaObject.Players.Any<PlayerMetadata>())
-            {
-                foreach (var playerItem in metaObject.Players)
-                {
-                    Player player = new Player(this, playerItem.SolidColor, playerItem.IsOpponent);
-                    Canvas.SetLeft(player, playerItem.Left);
-                    Canvas.SetTop(player, playerItem.Top);
-                    this.PlaygroundCanvas.Children.Add(player);
-                }
-            }
-            return true;
-
+            this.selectedPlayer.PlayerEllipse.Fill = selectedPlayer.solidColorBrush;
+            if (this.selectedPlayer.actionList.CheckActionView.Visibility == Visibility.Visible)
+                this.selectedPlayer.actionList.Visibility = Visibility.Collapsed;
+            this.selectedPlayer = null;
         }
 
         void Playground_Loaded(object sender, RoutedEventArgs e)
@@ -55,7 +45,35 @@ namespace GamePlugin
 
         void client_GetStartMetadataCompleted(object sender, GetStartMetadataCompletedEventArgs e)
         {
-            SetMetadata(e.Result);
+            Metadata metaObject = ServiceHelper.GetTypedObjectFromJson<Metadata>(e.Result);
+            if (metaObject.Players.Any<PlayerMetadata>())
+            {
+                foreach (var playerItem in metaObject.Players)
+                {
+                    Player player = new Player(this, playerItem);
+                    Canvas.SetLeft(player, playerItem.Left);
+                    Canvas.SetTop(player, playerItem.Top);
+                    this.PlaygroundCanvas.Children.Add(player);
+                }
+            }
+        }
+
+        private void PlaygroundCanvas_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        {
+            if (selectedPlayer != null)
+            {
+                if (selectedPlayer.arrow != null)
+                    this.PlaygroundCanvas.Children.Remove(selectedPlayer.arrow);
+                Arrow arrow = new Arrow(e.GetPosition(this), selectedPlayer);
+                selectedPlayer.arrow = arrow;
+                this.PlaygroundCanvas.Children.Add(arrow);
+            }
+        }
+
+        private void PlaygroundCanvas_MouseRightButtonDown_1(object sender, MouseButtonEventArgs e)
+        {
+            ClearSelectedPlayer();
+            e.Handled = true;
         }
     }
 }

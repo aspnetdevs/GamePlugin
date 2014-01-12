@@ -6,19 +6,19 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
 
-    <Grid Height="120" Width="120">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <ListBox Grid.Row="0">
-            <ListBoxItem>gdsf</ListBoxItem>
-            <ListBoxItem>fdsf</ListBoxItem>
-            <ListBoxItem>gddfgdsafgsf</ListBoxItem>
-            <ListBoxItem>gdsaga</ListBoxItem>
-            <ListBoxItem>gddsgdsasf</ListBoxItem>
-            <ListBoxItem>43tgdfg</ListBoxItem>
-        </ListBox>
-        <Button HorizontalAlignment="Right" Grid.Row="1" Content="Выбрать" />
-    </Grid>
+    <Canvas Height="120" Width="120">
+        <Grid Height="120" Width="120" x:Name="CheckActionView">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ListBox Grid.Row="0" x:Name="ActionListBox">
+                <ListBoxItem x:Name="Run">Бег</ListBoxItem>
+                <ListBoxItem x:Name="ShortPass">Короткий пас</ListBoxItem>
+                <ListBoxItem x:Name="Shoot">Удар</ListBoxItem>
+            </ListBox>
+            <Button HorizontalAlignment="Right" Grid.Row="1" Content="Выбрать" Click="Button_Click_1" />
+        </Grid>
+        <TextBlock x:Name="CheckedActionCaption" Visibility="Collapsed" MouseLeftButtonDown="CheckedActionCaption_MouseLeftButtonDown_1"></TextBlock>
+    </Canvas>
 </UserControl>

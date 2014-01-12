@@ -14,36 +14,43 @@ namespace GamePlugin
 {
     public partial class Player : UserControl
     {
-        Playground playground;
-        bool isOpponent;
-        SolidColorBrush solidColorBrush;
-        public Player(Playground playground, string solidColor, bool isOpponent)
+        public Playground playground;
+        public PlayerMetadata metadata;
+        public SolidColorBrush solidColorBrush;
+        public ActionList actionList;
+        public Arrow arrow;
+        public byte Power;
+        public Player(Playground playground, PlayerMetadata metadata)
         {
             InitializeComponent();
             this.playground = playground;
-            this.isOpponent = isOpponent;
-            this.PlayerEllipse.Fill = solidColorBrush = new SolidColorBrush((Color)typeof(Colors).GetProperty(solidColor).GetValue(null, null));
-            if (!isOpponent)
+            this.metadata = metadata;
+            this.PlayerEllipse.Fill = solidColorBrush = new SolidColorBrush((Color)typeof(Colors).GetProperty(metadata.SolidColor).GetValue(null, null));
+            if (!metadata.IsOpponent)
                 this.MouseLeftButtonDown += PlayerEllipse_MouseLeftButtonDown_1;
         }
 
         private void PlayerEllipse_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
         {
+
             if (playground.selectedPlayer != null)
             {
-                playground.selectedPlayer.PlayerEllipse.Fill = new SolidColorBrush(Colors.Yellow);
-                playground.PlaygroundCanvas.Children.Remove(playground.selectedActionList);
+                playground.ClearSelectedPlayer();
             }
+            if (this.actionList == null)
+            {
+                ActionList actions = new ActionList(this);
+                Canvas.SetLeft(actions, Canvas.GetLeft(this) + this.ActualWidth + 10);
+                Canvas.SetTop(actions, Canvas.GetTop(this));
+                playground.PlaygroundCanvas.Children.Add(actions);
+                this.actionList = actions;
+            }
+            else
+                this.actionList.Visibility = Visibility.Visible;
             this.PlayerEllipse.Fill = new SolidColorBrush(Colors.Red);
             playground.selectedPlayer = this;
-
-            ActionList actions = new ActionList();
-            Canvas.SetLeft(actions, Canvas.GetLeft(this) + this.ActualWidth + 10);
-            Canvas.SetTop(actions, Canvas.GetTop(this));
-            playground.PlaygroundCanvas.Children.Add(actions);
-            playground.selectedActionList = actions;
+            e.Handled = true;
             //Здесь необходимо добавить слайдер силы
-            
         }
     }
 }

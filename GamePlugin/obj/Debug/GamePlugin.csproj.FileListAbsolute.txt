@@ -88,6 +88,7 @@ C:\inetpub\wwwroot\GamePlugin\GamePlugin\Bin\Debug\vi\System.Windows.Controls.Da
 C:\inetpub\wwwroot\GamePlugin\GamePlugin\Bin\Debug\zh-Hans\System.Windows.Controls.Data.Input.resources.dll
 C:\inetpub\wwwroot\GamePlugin\GamePlugin\Bin\Debug\zh-Hant\System.Windows.Controls.Data.Input.resources.dll
 C:\inetpub\wwwroot\GamePlugin\GamePlugin\obj\Debug\App.g.cs
+C:\inetpub\wwwroot\GamePlugin\GamePlugin\obj\Debug\Arrow.g.cs
 C:\inetpub\wwwroot\GamePlugin\GamePlugin\obj\Debug\Playground.g.cs
 C:\inetpub\wwwroot\GamePlugin\GamePlugin\obj\Debug\Player.g.cs
 C:\inetpub\wwwroot\GamePlugin\GamePlugin\obj\Debug\ActionList.g.cs
@@ -95,4 +96,3 @@ C:\inetpub\wwwroot\GamePlugin\GamePlugin\obj\Debug\GamePlugin.g.resources
 C:\inetpub\wwwroot\GamePlugin\GamePlugin\obj\Debug\GamePlugin.dll
 C:\inetpub\wwwroot\GamePlugin\GamePlugin\obj\Debug\GamePlugin.pdb
 C:\inetpub\wwwroot\GamePlugin\GamePlugin\obj\Debug\XapCacheFile.xml
-C:\inetpub\wwwroot\GamePlugin\GamePlugin\obj\Debug\GamePlugin.csprojResolveAssemblyReference.cache

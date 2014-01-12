@@ -6,7 +6,7 @@
     xmlns:entity="clr-namespace:GamePlugin"
     mc:Ignorable="d"
     d:DesignHeight="480" d:DesignWidth="720">
-    <Canvas x:Name="PlaygroundCanvas" Width="720" Height="480">
+    <Canvas x:Name="PlaygroundCanvas" Width="720" Height="480" MouseLeftButtonDown="PlaygroundCanvas_MouseLeftButtonDown_1" MouseRightButtonDown="PlaygroundCanvas_MouseRightButtonDown_1">
         <Canvas.Background>
                 <ImageBrush Stretch="Fill" ImageSource="image/playground.png"/>
         </Canvas.Background>

@@ -14,6 +14,9 @@ namespace GamePlugin
     public interface IEntity
     {
         string GetMetadata();
-        bool SetMetadata(string metadata);
+    }
+    public interface IAction
+    {
+        void Execute();
     }
 }

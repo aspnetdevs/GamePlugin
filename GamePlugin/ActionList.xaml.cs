@@ -14,9 +14,38 @@ namespace GamePlugin
 {
     public partial class ActionList : UserControl
     {
-        public ActionList()
+        Player player;
+        string selectedAction;
+        public ActionList(Player player)
         {
             InitializeComponent();
+            this.player = player;
         }
+
+        
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (this.ActionListBox.SelectedIndex != -1)
+            {
+                ListBoxItem selectedItem = (ListBoxItem)this.ActionListBox.SelectedItem;
+                selectedAction = selectedItem.Name;
+                this.CheckedActionCaption.Text = selectedItem.Content.ToString();
+                TransformView();
+            }
+        }
+
+        private void CheckedActionCaption_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        {
+            selectedAction = string.Empty;
+            TransformView();
+            e.Handled = true;
+        }
+        private void TransformView()
+        {
+            this.CheckActionView.Visibility = this.CheckActionView.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+            this.CheckedActionCaption.Visibility = this.CheckedActionCaption.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+        }
+
+        
     }
 }
