@@ -30,6 +30,7 @@ namespace GamePlugin
                 ListBoxItem selectedItem = (ListBoxItem)this.ActionListBox.SelectedItem;
                 selectedAction = selectedItem.Name;
                 this.CheckedActionCaption.Text = selectedItem.Content.ToString();
+                this.player.arrow.UpdateArrow();
                 TransformView();
             }
         }

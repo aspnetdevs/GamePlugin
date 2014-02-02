@@ -19,12 +19,13 @@ namespace GamePlugin
         public SolidColorBrush solidColorBrush;
         public ActionList actionList;
         public Arrow arrow;
-        public byte Power;
+        public PowerSlider powerSlider;
         public Player(Playground playground, PlayerMetadata metadata)
         {
             InitializeComponent();
             this.playground = playground;
             this.metadata = metadata;
+            this.PlayerEllipse.Name = metadata.Tag;
             this.PlayerEllipse.Fill = solidColorBrush = new SolidColorBrush((Color)typeof(Colors).GetProperty(metadata.SolidColor).GetValue(null, null));
             if (!metadata.IsOpponent)
             {
@@ -48,9 +49,26 @@ namespace GamePlugin
                 playerMoveMetadata = new PlayerMoveMetadata();
                 playerMoveMetadata.ActionName = actionList.selectedAction;
                 playerMoveMetadata.MoveTo = arrow.endPoint;
-                playerMoveMetadata.Tag = (Guid)this.metadata.Tag;
+                playerMoveMetadata.Tag = this.metadata.Tag;
             }
             return playerMoveMetadata;
+        }
+
+        public void UpdateAfterMove(IMoveMetadata moveMetadata)
+        {
+            PlayerMoveMetadata playerMoveMetadata = (PlayerMoveMetadata)moveMetadata;
+            this.playground.SelectedPlayer = null;
+            ResetVisibleEntity();
+            this.metadata.Left = (int)playerMoveMetadata.MoveTo.X;
+            this.metadata.Top = (int)playerMoveMetadata.MoveTo.Y;
+        }
+
+        public void ResetVisibleEntity()
+        {
+            this.playground.PlaygroundCanvas.Children.Remove(actionList);
+            this.actionList = null;
+            this.playground.PlaygroundCanvas.Children.Remove(arrow);
+            this.arrow = null;
         }
     }
 }

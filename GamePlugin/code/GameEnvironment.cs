@@ -40,5 +40,17 @@ namespace GamePlugin
                 throw new Exception("Элемент с таким именем не найден");
         }
 
+        public static double GetAngleBetweenPoints(Point startPoint, Point endPoint)
+        {
+            double xDiff = endPoint.X - startPoint.X;
+            double yDiff = endPoint.Y - startPoint.Y;
+            return Math.Atan2(yDiff, xDiff) * 180.0 / Math.PI;
+        }
+        public static double GetLengthBetweenPoints(Point startPoint, Point endPoint)
+        {
+            double xDiff = endPoint.X - startPoint.X;
+            double yDiff = endPoint.Y - startPoint.Y;
+            return Math.Sqrt(xDiff * xDiff + yDiff * yDiff);
+        }
     }
 }

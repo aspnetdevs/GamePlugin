@@ -88,7 +88,7 @@
     <Compile Include="Ball.xaml.cs">
       <DependentUpon>Ball.xaml</DependentUpon>
     </Compile>
-    <Compile Include="code\Actions.cs" />
+    <Compile Include="code\AnimationEngine.cs" />
     <Compile Include="code\GameEnvironment.cs" />
     <Compile Include="code\Interfaces.cs" />
     <Compile Include="code\Metadata.cs" />
@@ -98,6 +98,9 @@
     </Compile>
     <Compile Include="Playground.xaml.cs">
       <DependentUpon>Playground.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PowerSlider.xaml.cs">
+      <DependentUpon>PowerSlider.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\Game\Reference.cs">
@@ -121,6 +124,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ball.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PowerSlider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

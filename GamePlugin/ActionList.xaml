@@ -7,15 +7,13 @@
     d:DesignHeight="300" d:DesignWidth="400">
 
     <Canvas Height="120" Width="120">
-        <Grid Height="120" Width="120" x:Name="CheckActionView">
+        <Grid Height="60" Width="120" x:Name="CheckActionView">
             <Grid.RowDefinitions>
-                <RowDefinition Height="5*"/>
+                <RowDefinition Height="2*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <ListBox Grid.Row="0" x:Name="ActionListBox">
                 <ListBoxItem x:Name="Run">Бег</ListBoxItem>
-                <ListBoxItem x:Name="ShortPass">Короткий пас</ListBoxItem>
-                <ListBoxItem x:Name="Shoot">Удар</ListBoxItem>
             </ListBox>
             <Button HorizontalAlignment="Right" Grid.Row="1" Content="Выбрать" Click="Button_Click_1" />
         </Grid>

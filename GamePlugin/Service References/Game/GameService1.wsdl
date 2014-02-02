@@ -26,6 +26,12 @@
   <wsdl:message name="GameService_SetMoveMetadata_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetMoveMetadataResponse" />
   </wsdl:message>
+  <wsdl:message name="GameService_GetMoveMetadata_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMoveMetadata" />
+  </wsdl:message>
+  <wsdl:message name="GameService_GetMoveMetadata_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMoveMetadataResponse" />
+  </wsdl:message>
   <wsdl:portType name="GameService">
     <wsdl:operation name="GetStartMetadata">
       <wsdl:input wsaw:Action="http://tempuri.org/GameService/GetStartMetadata" message="tns:GameService_GetStartMetadata_InputMessage" />
@@ -34,6 +40,10 @@
     <wsdl:operation name="SetMoveMetadata">
       <wsdl:input wsaw:Action="http://tempuri.org/GameService/SetMoveMetadata" message="tns:GameService_SetMoveMetadata_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/GameService/SetMoveMetadataResponse" message="tns:GameService_SetMoveMetadata_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMoveMetadata">
+      <wsdl:input wsaw:Action="http://tempuri.org/GameService/GetMoveMetadata" message="tns:GameService_GetMoveMetadata_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/GameService/GetMoveMetadataResponse" message="tns:GameService_GetMoveMetadata_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CustomBinding_GameService" type="tns:GameService">
@@ -50,6 +60,15 @@
     </wsdl:operation>
     <wsdl:operation name="SetMoveMetadata">
       <soap12:operation soapAction="http://tempuri.org/GameService/SetMoveMetadata" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMoveMetadata">
+      <soap12:operation soapAction="http://tempuri.org/GameService/GetMoveMetadata" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

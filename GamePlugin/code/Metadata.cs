@@ -25,7 +25,7 @@ namespace GamePlugin
     public class PlayerMoveMetadata : IMoveMetadata
     {
         [DataMember]
-        public Guid Tag { get; set; }
+        public string Tag { get; set; }
         [DataMember]
         public string ActionName { get; set; }
         [DataMember]
@@ -39,22 +39,22 @@ namespace GamePlugin
 
     public class PlayerMetadata
     {
-        public Guid Tag { get; set; }
+        public string Tag { get; set; }
         public string SolidColor { get; set; }
         public int Left { get; set; }
         public int Top { get; set; }
         public bool IsOpponent { get; set; }
-        public byte Run { get; set; }
-        public byte ShortPass { get; set; }
-        public byte LongPass { get; set; }
-        public byte Shoot { get; set; }
-        public byte ShortPassAccuracy { get; set; }
-        public byte LongPassAccuracy { get; set; }
-        public byte ShootAccuracy { get; set; }
-        public byte Power { get; set; }
-        public byte Speed { get; set; }
-        public byte Stamina { get; set; }
-        public byte BodyBalance { get; set; }
-        public byte BallControl { get; set; }
+        public double Run { get; set; }
+        public double ShortPass { get; set; }
+        public double LongPass { get; set; }
+        public double Shoot { get; set; }
+        public double ShortPassAccuracy { get; set; }
+        public double LongPassAccuracy { get; set; }
+        public double ShootAccuracy { get; set; }
+        public double Power { get; set; }
+        public double Speed { get; set; }
+        public double Stamina { get; set; }
+        public double BodyBalance { get; set; }
+        public double BallControl { get; set; }
     }
 }

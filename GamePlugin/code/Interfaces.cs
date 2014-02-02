@@ -17,8 +17,4 @@ namespace GamePlugin
     }
     public interface IMoveMetadata
     { }
-    public interface IAction
-    {
-        void Execute();
-    }
 }
