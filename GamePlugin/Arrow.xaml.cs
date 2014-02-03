@@ -19,6 +19,8 @@ namespace GamePlugin
         public Point endPoint;
         Line line;
         double lineLength;
+        double maxLineLength;
+        double lineRation;
         public Arrow(Point endPoint, Player player)
         {
             InitializeComponent();
@@ -34,6 +36,9 @@ namespace GamePlugin
             Line head = new Line();
             Point startPoint = new Point(Canvas.GetLeft(player) + player.ActualWidth / 2, Canvas.GetTop(player) + player.ActualHeight / 2);
             lineLength = GameEnvironment.GetLengthBetweenPoints(startPoint, endPoint);
+            maxLineLength = 3 * player.metadata.Run;
+            lineRation = lineLength / maxLineLength;
+            player.powerSlider.slider.Value = 100 * lineRation;
             double angle = GameEnvironment.GetAngleBetweenPoints(startPoint, endPoint);
             line.X1 = startPoint.X;
             line.Y1 = startPoint.Y;
@@ -64,7 +69,7 @@ namespace GamePlugin
                 switch (player.actionList.selectedAction)
                 {
                     case "Run":
-                        greenOffset = ((player.metadata.Run / 2) * (player.metadata.Speed / 100)) * 6 * (player.powerSlider.slider.Value / 100) / lineLength;
+                        greenOffset = 1 / lineRation;
                         break;
                     default:
                         throw new Exception("Не найдено действие");

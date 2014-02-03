@@ -1,7 +1,7 @@
-﻿<xapCache source="C:\inetpub\wwwroot\GamePlugin\GamePlugin\Bin\Debug\GamePlugin.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="02.02.2014 21:45:29">
-  <file source="C:\inetpub\wwwroot\GamePlugin\GamePlugin\obj\Debug\GamePlugin.dll" archivePath="GamePlugin.dll" lastWriteTime="02.02.2014 21:45:28" />
+﻿<xapCache source="C:\inetpub\wwwroot\GamePlugin\GamePlugin\Bin\Debug\GamePlugin.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="03.02.2014 23:57:12">
+  <file source="C:\inetpub\wwwroot\GamePlugin\GamePlugin\obj\Debug\GamePlugin.dll" archivePath="GamePlugin.dll" lastWriteTime="03.02.2014 23:57:11" />
   <file source="C:\Program Files\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.ComponentModel.DataAnnotations.dll" archivePath="System.ComponentModel.DataAnnotations.dll" lastWriteTime="18.11.2011 16:40:20" />
   <file source="C:\Program Files\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Windows.Controls.Data.Input.dll" archivePath="System.Windows.Controls.Data.Input.dll" lastWriteTime="18.11.2011 16:40:20" />
   <file source="C:\inetpub\wwwroot\GamePlugin\GamePlugin\ServiceReferences.ClientConfig" archivePath="ServiceReferences.ClientConfig" lastWriteTime="07.01.2014 2:48:59" />
-  <file source="C:\inetpub\wwwroot\GamePlugin\GamePlugin\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="02.02.2014 21:43:21" />
+  <file source="C:\inetpub\wwwroot\GamePlugin\GamePlugin\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="03.02.2014 23:52:27" />
 </xapCache>

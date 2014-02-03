@@ -18,6 +18,7 @@ namespace GamePlugin
         public static string gameId;
         public static string userId;
         public static int currentMoveNumber = 0;
+        public static double moveDuration = 0;
         public static void SetDefaultProperties()
         {
             gameId = GetQueryStringItemValue("gameId", HtmlPage.Document.DocumentUri.Query);

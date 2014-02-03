@@ -65,6 +65,8 @@ namespace GamePlugin
 
         public void ResetVisibleEntity()
         {
+            this.playground.PlaygroundCanvas.Children.Remove(powerSlider);
+            this.powerSlider = null;
             this.playground.PlaygroundCanvas.Children.Remove(actionList);
             this.actionList = null;
             this.playground.PlaygroundCanvas.Children.Remove(arrow);
